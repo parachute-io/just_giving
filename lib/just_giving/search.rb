@@ -11,7 +11,7 @@ module JustGiving
     end
 
     # Search fundraising
-    def search_fundraising(query, page, per_page, cause_id, event_id, charity_id, design_id, status, event_date_range)
+    def search_fundraising(query, charity_id, cause_id, event_id, design_id, status, event_date_range, page, per_page)
       get("v1/fundraising/search?q=#{query}&=page=#{page}&pagesize=#{per_page}&causeid=#{cause_id}&eventid=#{event_id}&charityid=#{charity_id}&designid=#{design_id}&status=#{status}&eventdaterange=#{event_date_range}")
     end
   end
