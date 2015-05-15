@@ -9,5 +9,10 @@ module JustGiving
     def search_events(query, page=1, per_page=10)
       get("v1/event/search?q=#{query}&page=#{page}&pageSize=#{per_page}")
     end
+
+    # Search fundraising
+    def search_fundraising(query, page, per_page, cause_id, event_id, charity_id, design_id, status, event_date_range)
+      get("v1/fundraising/search?q=#{query}&=page=#{page}&pagesize=#{per_page}&causeid=#{cause_id}&eventid=#{event_id}&charityid=#{charity_id}&designid=#{design_id}&status=#{status}&eventdaterange=#{event_date_range}")
+    end
   end
 end
