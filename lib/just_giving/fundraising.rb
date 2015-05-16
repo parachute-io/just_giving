@@ -30,9 +30,9 @@ module JustGiving
     end
 
     # Get all donations per page
-    def donations(page=1, per_page=50)
+    def donations(page=1, per_page=50, auth = false)
       get("v1/fundraising/pages/#{@short_name}/donations?pageNum=#{page}&page_size=#{per_page}",
-        :basic_auth => true)
+        :basic_auth => auth)
     end
 
     # Update a pages story
