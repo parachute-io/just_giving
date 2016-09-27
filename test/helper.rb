@@ -1,8 +1,8 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'test/unit'
-require 'webmock/test_unit'
-require 'shoulda'
 require 'just_giving'
+require 'webmock/minitest'
+require 'shoulda'
+require 'minitest/autorun'
 
 def stub_get(path, basic_auth=nil)
   stub_request(:get, make_url(path, basic_auth))
@@ -30,7 +30,4 @@ end
 
 def fixture(file)
   File.new(File.expand_path("../fixtures", __FILE__) + '/' + file)
-end
-
-class Test::Unit::TestCase
 end

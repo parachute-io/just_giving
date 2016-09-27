@@ -1,10 +1,10 @@
 require 'helper'
 
-class TestAccount < Test::Unit::TestCase
+class TestAccount < Minitest::Test
   def setup
     JustGiving::Configuration.application_id = '2345'
   end
-  
+
   context 'Getting pages' do
     should 'get pages for account' do
       stub_get('/v1/account/test@example.com/pages').with(:headers => {'Accept'=>'application/json'}).to_return(
@@ -65,7 +65,7 @@ class TestAccount < Test::Unit::TestCase
       stub_head('/v1/account/test@example.com').with({
         'Accept'=>'application/json'
       }).to_return({
-        :status => 200, 
+        :status => 200,
         :headers => {
           :content_type =>  'application/json; charset=utf-8'
         },
@@ -78,7 +78,7 @@ class TestAccount < Test::Unit::TestCase
       stub_head("/v1/account/test@example.com").with({
         'Accept'=>'application/json'
       }).to_return({
-        :status => 404, 
+        :status => 404,
         :headers => {
           :content_type => 'application/json; charset=utf-8'
         },
@@ -111,7 +111,7 @@ class TestAccount < Test::Unit::TestCase
       stub_get('/v1/account/test@example.com/requestpasswordreminder').with({
         'Accept'=>'application/json'
       }).to_return({
-        :status => 200, 
+        :status => 200,
         :headers => {
           :content_type =>  'application/json; charset=utf-8'
         },
@@ -124,7 +124,7 @@ class TestAccount < Test::Unit::TestCase
       stub_get('/v1/account/test@example.com/requestpasswordreminder').with({
         'Accept'=>'application/json'
       }).to_return({
-        :status => 400, 
+        :status => 400,
         :body => "[{\"id\":\"AccountNotFound\",\"desc\":\"An account with that email address could not be found\"}]",
         :headers => {:content_type =>  'application/json; charset=utf-8'}
       })

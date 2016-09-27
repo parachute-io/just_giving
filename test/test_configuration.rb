@@ -1,13 +1,13 @@
 require 'helper'
 
-class TestConfiguration < Test::Unit::TestCase
+class TestConfiguration < Minitest::Test
   should 'allow setting/getting of application_id' do
     JustGiving::Configuration.application_id = '1234'
     assert_equal '1234', JustGiving::Configuration.application_id
     JustGiving::Configuration.application_id = '5678'
     assert_equal '5678', JustGiving::Configuration.application_id
   end
-  
+
   should 'allow setting the enviroment' do
     assert_equal :staging, JustGiving::Configuration.environment
     JustGiving::Configuration.environment = :sandbox
@@ -22,7 +22,7 @@ class TestConfiguration < Test::Unit::TestCase
       assert_equal v, JustGiving::Configuration.base_uri
     end
   end
-  
+
   should 'return the api endpoint' do
     JustGiving::Configuration.application_id = '5678'
     JustGiving::Configuration.environment = :sandbox
@@ -32,10 +32,10 @@ class TestConfiguration < Test::Unit::TestCase
     JustGiving::Configuration.environment = :production
     assert_equal 'https://api.justgiving.com/5678', JustGiving::Configuration.api_endpoint
   end
-  
+
   should 'raise if application id is not set' do
     JustGiving::Configuration.application_id = nil
-    assert_raise JustGiving::InvalidApplicationId do
+    assert_raises JustGiving::InvalidApplicationId do
       JustGiving::Configuration.api_endpoint
     end
   end

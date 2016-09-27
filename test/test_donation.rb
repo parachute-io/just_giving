@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestDonation < Test::Unit::TestCase
+class TestDonation < Minitest::Test
   def setup
     JustGiving::Configuration.application_id = '2345'
   end

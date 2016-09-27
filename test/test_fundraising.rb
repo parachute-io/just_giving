@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestFundraising < Test::Unit::TestCase
+class TestFundraising < Minitest::Test
   def setup
     JustGiving::Configuration.application_id = '2345'
   end
@@ -55,7 +55,7 @@ class TestFundraising < Test::Unit::TestCase
       stub_head('/v1/fundraising/pages/test').with({
         :headers => {'Accept'=>'application/json'}
       }).to_return({
-        :status => 200, 
+        :status => 200,
         :headers => {
           :content_type =>  'application/json; charset=utf-8'
         },

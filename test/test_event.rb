@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestEvent < Test::Unit::TestCase
+class TestEvent < Minitest::Test
   def setup
     JustGiving::Configuration.application_id = '2345'
   end
@@ -8,7 +8,7 @@ class TestEvent < Test::Unit::TestCase
     setup do
       @event = JustGiving::Event.new(1)
     end
-    
+
     should 'get details' do
       stub_get('/v1/event/1').with(:headers => {'Accept'=>'application/json'}).to_return(
         :body => fixture('event_get_success.json'),
@@ -17,7 +17,7 @@ class TestEvent < Test::Unit::TestCase
       assert_equal 12356, details["id"]
       assert_equal "Playing Mario for charity", details["description"]
     end
-    
+
     should 'get pages' do
       stub_get('/v1/event/1/pages').with(:headers => {'Accept'=>'application/json'}).to_return(
         :body => fixture('event_pages_success.json'),

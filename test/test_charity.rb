@@ -1,10 +1,10 @@
 require 'helper'
 
-class TestCharity < Test::Unit::TestCase
+class TestCharity < Minitest::Test
   def setup
     JustGiving::Configuration.application_id = '2345'
   end
-  
+
   context 'fetching a charity' do
     should 'get a charity by id' do
       stub_get('/v1/charity/2050').with(:headers => {'Accept'=>'application/json'}).to_return(
@@ -15,7 +15,7 @@ class TestCharity < Test::Unit::TestCase
       assert_equal "The Demo Charity", charity["smsShortName"]
     end
   end
-  
+
   context 'validate a charity' do
     should '' do
       stub_post('/v1/charity/authenticate').with(:headers => {'Accept'=>'application/json'}).to_return(
