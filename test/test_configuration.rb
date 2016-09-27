@@ -14,6 +14,7 @@ class TestConfiguration < Minitest::Test
   end
 
   should 'allow setting the enviroment' do
+    config.environment = :staging
     assert_equal :staging, config.environment
 
     config.environment = :sandbox
