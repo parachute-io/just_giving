@@ -19,7 +19,7 @@ module Faraday
     end
 
     def error_body(body)
-      return nil if body.nil?
+      return nil if body.nil? || body.empty?
       body = MultiJson.decode(body)
       if body.nil?
         nil
