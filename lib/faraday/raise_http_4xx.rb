@@ -6,6 +6,8 @@ module Faraday
     def on_complete(env)
       env[:response].on_complete do |response|
         case response[:status].to_i
+        when 403
+          raise JustGiving::Forbidden, error_message(response)
         when 404
           raise JustGiving::NotFound, error_message(response)
         end

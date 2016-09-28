@@ -6,4 +6,6 @@ module JustGiving
   class InternalServerError < Error; end
 
   class InvalidApplicationId < Error; end
+
+  class Forbidden < Error; end
 end
