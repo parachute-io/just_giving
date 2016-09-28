@@ -1,13 +1,17 @@
 module JustGiving
   class Configuration
+    API_ORIGINS = {
+      :production => 'https://api.justgiving.com',
+      :sandbox    => 'https://api.sandbox.justgiving.com'
+    }
+
     BASE_URI_MAP = {
       :production => "http://www.justgiving.com",
-      :staging => "http://v3-staging.justgiving.com",
       :sandbox => "http://v3-sandbox.justgiving.com"
     }
 
     @@application_id = nil
-    @@environment = :staging
+    @@environment = :sandbox
     @@ca_path =  "/usr/lib/ssl/certs"
 
     ## This is your Just Giving application id
@@ -35,11 +39,7 @@ module JustGiving
     ## The API endpoint
     def self.api_endpoint
       raise JustGiving::InvalidApplicationId.new if !application_id
-      case environment
-        when :sandbox then "https://api-sandbox.justgiving.com/#{application_id}"
-        when :staging then "https://api-staging.justgiving.com/#{application_id}"
-        else "https://api.justgiving.com/#{application_id}"
-      end
+      API_ORIGINS.fetch(environment) + "/#{application_id}"
     end
 
     ## Path to the systems CA cert bundles

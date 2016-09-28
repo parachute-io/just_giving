@@ -14,9 +14,6 @@ class TestConfiguration < Minitest::Test
   end
 
   should 'allow setting the enviroment' do
-    config.environment = :staging
-    assert_equal :staging, config.environment
-
     config.environment = :sandbox
     assert_equal :sandbox, config.environment
 
@@ -34,10 +31,7 @@ class TestConfiguration < Minitest::Test
   should 'return the api endpoint' do
     config.application_id = '5678'
     config.environment = :sandbox
-    assert_equal 'https://api-sandbox.justgiving.com/5678', config.api_endpoint
-
-    config.environment = :staging
-    assert_equal 'https://api-staging.justgiving.com/5678', config.api_endpoint
+    assert_equal 'https://api.sandbox.justgiving.com/5678', config.api_endpoint
 
     config.environment = :production
     assert_equal 'https://api.justgiving.com/5678', config.api_endpoint
