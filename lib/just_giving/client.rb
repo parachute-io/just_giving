@@ -4,6 +4,8 @@ require 'securerandom'
 
 module JustGiving
   class Client
+    include Account
+
     attr_accessor :token, :oauth_client
 
     def initialize(token)

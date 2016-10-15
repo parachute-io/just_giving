@@ -1,43 +1,52 @@
 module JustGiving
-  class Account < API
-    def initialize(email=nil)
-      @email = email
+  module Account
+    def account
+      request(:get, 'v1/account').tap do |account|
+        @email = account['email']
+      end
     end
 
-    # This lists all the fundraising pages for the supplied email
-    def pages
-      get("v1/account/#{@email}/pages")
+    def email
+      account unless @email
+      @email
     end
 
-    # This creates an user account with Just Giving
-    def create(params)
-      put('v1/account', params)
+    # This lists all the fundraising pages for the authorized email
+    def account_pages
+      request(:get, "v1/account/#{email}/pages")
+    end
+
+    # This creates a user account with Just Giving
+    def create_account(params)
+      request(:put, 'v1/account', params)
     end
 
     # This validates a username/password
-    def validate(params)
-      post('v1/account/validate', params)
+    def validate_account(params)
+      request(:post, 'v1/account/validate', params)
     end
 
     # Confirm if an email is available or not
-    def available?
+    def account_available?(email)
       begin
-        head("v1/account/#{@email}")
+        request(:head, "v1/account/#{email}")
         return false
       rescue JustGiving::NotFound
         return true
       end
     end
 
-    # Update password
-    def change_password(params)
-      post('v1/account/changePassword', params)
-    end
+    # TODO: Not sure we want/need these
+    #
+    # # Update password
+    # def change_password(params)
+    #   post('v1/account/changePassword', params)
+    # end
 
-    # Send password reminder
-    def password_reminder
-      response = get("v1/account/#{@email}/requestpasswordreminder")
-      (response && response[:errors]) ? response : true
-    end
+    # # Send password reminder
+    # def password_reminder
+    #   response = get("v1/account/#{@email}/requestpasswordreminder")
+    #   (response && response[:errors]) ? response : true
+    # end
   end
 end

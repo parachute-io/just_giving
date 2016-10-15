@@ -1,0 +1,37 @@
+{
+  "accountId": 19322075,
+  "accountTypes": ["Standard"],
+  "activePageCount": 0,
+  "address": {
+    "country": null,
+    "countyOrState": null,
+    "line1": null,
+    "line2": null,
+    "postcodeOrZipcode": null,
+    "townOrCity": null
+  },
+  "completedPagesCount": 0,
+  "country": null,
+  "donationTotalsInSupportedCurrencies": [],
+  "email": "nathan@example.org",
+  "firstName": "Nathan",
+  "joinDate": "/Date(1476232820000+0000)/",
+  "lastName": "Barley",
+  "profileImageUrls": [
+    {
+      "Key": "OriginalSize",
+      "Value": ""
+    },
+    {
+      "Key": "Size150x150Face",
+      "Value": ""
+    }
+  ],
+  "raisedTotalsInSupportedCurrencies": [],
+  "totalDonated": 22.0,
+  "totalDonatedGiftAid": 5.5,
+  "totalGiftAid": 0,
+  "totalRaised": 0,
+  "town": null,
+  "userId": "5271b6be-3f11-4471-9914-db187abc4221"
+}
