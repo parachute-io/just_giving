@@ -27,3 +27,11 @@ end
 def fixture(file)
   File.new(File.expand_path("../fixtures", __FILE__) + '/' + file)
 end
+
+def client
+  JustGiving::Client.new(token)
+end
+
+def token
+  JSON.parse(fixture('oauth_access_token.json').read)
+end

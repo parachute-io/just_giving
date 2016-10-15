@@ -4,16 +4,22 @@ require 'faraday/raise_http_5xx'
 
 module JustGiving
   module Connection
+    attr_accessor :access_token
+
     private
-    
+
     def connection(basic_auth=false)
       options = {
-        :headers => {'Accept' => "application/json"},
+        :headers => {
+          Net::HTTP::ImmutableHeaderKey.new("x-application-key") => JustGiving::Configuration.secret_key,
+          'Accept' => "application/json"
+        },
         :url => JustGiving::Configuration.api_endpoint,
         :ssl => {:ca_path => JustGiving::Configuration.ca_path, :verify => false}
       }
 
       connection = Faraday::Connection.new(options) do |connection|
+        connection.authorization(:Bearer, access_token) unless access_token.nil?
         connection.request :json
 
         connection.response :json

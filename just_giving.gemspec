@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'hashie', '>= 0'
   s.add_runtime_dependency 'multi_json', '>= 1.0.1'
   s.add_runtime_dependency 'yajl-ruby', '>= 0'
+  s.add_runtime_dependency 'oauth2', '~> 1.2.0'
   s.add_development_dependency "bundler", "~> 1.12"
   s.add_development_dependency "rake", "~> 10.0"
   s.add_development_dependency 'shoulda', '>= 0'

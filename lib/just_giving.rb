@@ -1,3 +1,5 @@
+require 'net/httpheader'
+require 'net/http/immutable_header_key'
 require 'just_giving/error'
 require 'just_giving/response'
 require 'just_giving/configuration'
@@ -10,4 +12,5 @@ require 'just_giving/event'
 require 'just_giving/fundraising'
 require 'just_giving/search'
 require 'just_giving/donation'
+require 'just_giving/client'
 require 'just_giving/railtie' if defined?(Rails) && Rails::VERSION::MAJOR >= 3
