@@ -19,7 +19,7 @@ module Faraday
         end
       end
     end
-    
+
     private
 
     def error_message(response)
@@ -31,9 +31,13 @@ module Faraday
       body = MultiJson.decode(body)
       if body.nil?
         nil
+      elsif body.is_a?(Hash) && body['error']
+        "Error: #{body['error']}"
       elsif body.any?
         body.collect{|error| "#{error['id']} #{error['desc']}"}
       end
+    rescue
+      body.to_s
     end
   end
 end
