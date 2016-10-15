@@ -5,6 +5,7 @@ require 'securerandom'
 module JustGiving
   class Client
     include Account
+    include Fundraising
 
     attr_accessor :token, :oauth_client
 

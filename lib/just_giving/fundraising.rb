@@ -1,23 +1,24 @@
 module JustGiving
-  class Fundraising < API
-    def initialize(short_name=nil)
-      @short_name = short_name
-    end
-    
+  module Fundraising
+    # def initialize(short_name=nil)
+    #   @short_name = short_name
+    # end
+
     # Get all pages
-    def pages
-      get("v1/fundraising/pages", :basic_auth => true)
+    def fundraising_pages
+      request(:get, "v1/fundraising/pages")
     end
 
     # Create a new fundraising page
-    def create(params)
-      put("v1/fundraising/pages", {:basic_auth => true}.merge(params))
+    def create_fundraising_page(params)
+      # put("v1/fundraising/pages", {:basic_auth => true}.merge(params))
+      request(:put, "v1/fundraising/pages", params)
     end
 
     # Check if a short name is registered
-    def short_name_registered?
+    def fundraising_short_name_registered?(short_name)
       begin
-        head("v1/fundraising/pages/#{@short_name}")
+        request(:head, "v1/fundraising/pages/#{short_name}")
         return true
       rescue JustGiving::NotFound
         return false
@@ -25,8 +26,8 @@ module JustGiving
     end
 
     # Get a specific page
-    def page
-      get("v1/fundraising/pages/#{@short_name}")
+    def fundraising_page(short_name)
+      request(:get, "v1/fundraising/pages/#{short_name}")
     end
 
     # Get all donations per page
@@ -36,12 +37,21 @@ module JustGiving
     end
 
     # Update a pages story
-    def update_story(story)
-      post("v1/fundraising/pages/#{@short_name}", {:basic_auth => true}.merge({:storySupplement => story}))
+    def update_fundraising_page_story(short_name, story)
+      # request(:post, "v1/fundraising/pages/#{short_name}", {:storySupplement => story})
+      request(:put, "v1/fundraising/pages/#{short_name}/pagestory", { story: story })
     end
 
-    def upload_image
-      # TODO
+    def upload_fundraising_page_image(short_name, image_url)
+      request(:put, "v1/fundraising/pages/#{short_name}/images", {
+        url: image_url
+      })
+    end
+
+    def set_fundraising_page_default_image(short_name, image_name)
+      request(:put, "v1/fundraising/pages/#{short_name}/images/default", {
+        defaultImage: image_name
+      })
     end
 
     def suggest
