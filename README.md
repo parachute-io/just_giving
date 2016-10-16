@@ -32,7 +32,7 @@ This gem currently provides functionality to link to SDI, if you are using Rails
       
 <%= link_to 'Click to donate', just_giving_fundraising_page_url('short_url') %>
 
-<%= link_to 'Click to donate', just_giving_fundraising_donation_url('pageId' {
+<%= link_to 'Click to donate', just_giving_fundraising_donation_url('short_name' {
       :suggested_amount => 2..100000,
       :amount => 2..100000,
       :exit_url => 'http://myredirect.com', 
