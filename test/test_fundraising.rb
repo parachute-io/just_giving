@@ -19,27 +19,21 @@ class TestFundraising < Minitest::Test
     end
 
     should 'get donations' do
-      skip
-      stub_get('/v1/fundraising/pages/test/donations?pageNum=1&pagesize=50').with(
-        :basic_auth => ['test', 'secret']
-      ).to_return(
+      stub_get('/v1/fundraising/pages/test/donations?pageNum=1&pagesize=50').to_return(
         :body    => fixture('fundraising_donations_success.json'),
         :headers => {:content_type =>  'application/json; charset=utf-8'}
       )
 
-      pages = JustGiving::Fundraising.new('test').donations(1, 50, true)
+      pages = client.donations('test', 1, 50)
     end
 
     should 'set pagination options for donations' do
-      skip
-      stub_get('/v1/fundraising/pages/test/donations?pageNum=2&pagesize=10').with(
-        :basic_auth => ['test', 'secret']
-      ).to_return(
+      stub_get('/v1/fundraising/pages/test/donations?pageNum=2&pagesize=10').to_return(
         :body    => fixture('fundraising_donations_success.json'),
         :headers => {:content_type =>  'application/json; charset=utf-8'}
       )
 
-      pages = JustGiving::Fundraising.new('test').donations(2, 10, true)
+      pages = client.donations('test', 2, 10)
     end
 
     should 'create page' do
