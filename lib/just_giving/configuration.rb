@@ -6,8 +6,8 @@ module JustGiving
     }
 
     BASE_URI_MAP = {
-      :production => "http://www.justgiving.com",
-      :sandbox => "http://v3-sandbox.justgiving.com"
+      :production => "https://www.justgiving.com",
+      :sandbox    => "https://v3-sandbox.justgiving.com"
     }
 
     IDENTITY_ORIGINS = {
@@ -77,7 +77,7 @@ module JustGiving
     def self.ca_path=(path)
       @@ca_path = path
     end
-    
+
     def self.ca_path
       @@ca_path
     end

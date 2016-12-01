@@ -4,7 +4,7 @@ module JustGiving
   class SimpleDonationIntegration
     # Returns url to link to a charity page
     def self.charity_page_url(short_name)
-      "#{JustGiving::Configuration.base_uri}/#{short_name}/donate" 
+      "#{JustGiving::Configuration.base_uri}/#{short_name}/donate"
     end
 
     # Returns url for the donation page of a charity
@@ -15,8 +15,8 @@ module JustGiving
       url
     end
 
-    class << self
-      alias :fundraising_page_url :charity_page_url
+    def self.fundraising_page_url(short_name)
+      "#{JustGiving::Configuration.base_uri}/fundraising/#{short_name}"
     end
 
     # Returns url for the donation page of a fundraising
@@ -28,7 +28,7 @@ module JustGiving
     end
 
     private
-    
+
     # Remove options we are not interested in
     def self.parse_options(options)
       available_options = [:amount, :frequency, :exit_url, :donation_id]
