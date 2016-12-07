@@ -22,7 +22,7 @@ module JustGiving
     # Returns url for the donation page of a fundraising
     def self.fundraising_donation_url(short_name, options={})
       options = self.parse_options(options)
-      url = "#{JustGiving::Configuration.base_uri}/#{short_name}/donate"
+      url = "#{JustGiving::Configuration.base_uri}/#{short_name}/4w350m3/Donate"
       url << self.options_to_query(options) if options.any?
       url
     end
