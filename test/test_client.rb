@@ -42,10 +42,10 @@ class TestClient < Minitest::Test
     assert_kind_of JustGiving::Client, client
   end
 
-  context "with an expired access token" do
+  context "with an access token that expires in less than 10 minutes" do
     setup do
       @expired_token = token.merge({
-        expires_at: 1076294155
+        expires_at: Time.now.to_i + 10*60 - 1
       })
       @client = JustGiving::Client.new(@expired_token)
     end

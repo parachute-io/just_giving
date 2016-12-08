@@ -13,8 +13,12 @@ module JustGiving
       @token = token
     end
 
+    def access_token_expired?
+      oauth_access_token.expires_at > (Time.now.to_i + 10*60 - 1)
+    end
+
     def request(verb, path, params = {})
-      refresh_oauth_access_token! if oauth_access_token.expired?
+      refresh_oauth_access_token! if access_token_expired?
 
       api = API.new
       api.access_token = oauth_access_token.token
